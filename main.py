@@ -19,7 +19,7 @@ def main():
     """Main logic."""
 
     config = configparser.ConfigParser()
-    config.read("/home/netmaschal/python/snmp_fiber_project/info.ini")
+    config.read("/[YOUR DIRECTORY HERE]/snmp_fiber_project/info.ini")
     config_v = {
         'ini' : [
             str(config["oid"]["c_string"]),
