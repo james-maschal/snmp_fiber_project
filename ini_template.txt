@@ -1,0 +1,17 @@
+#Template .ini file for this program
+
+[file_path]
+last_ran_path = /[YOUR DIRECTORY HERE]/snmp_fiber_project/index_names/last_ran.ini
+index_path = /[YOUR DIRECTORY HERE]/snmp_fiber_project/index_names/index_report.json
+rx_path = /[YOUR DIRECTORY HERE]/snmp_fiber_project/index_names/rx_levels.json
+log_path = /[YOUR DIRECTORY HERE]/log.txt
+
+[oid]
+c_string = SNMP Read Community String
+sys_inv = 1.3.6.1.2.1.47.1.1.1.1.2
+sfp_int_2 = 1.3.6.1.4.1.9.9.91.1.1.1.1.4.
+chassis = 1.3.6.1.2.1.47.1.1.1.1.2.1
+
+[user]
+name = database username
+pass = database password

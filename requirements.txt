@@ -1,0 +1,6 @@
+pysnmp
+psycopg2-binary
+
+- clone these into your lib/site-packages directory, or wherever python gets your libraries from.
+**jns_cisco_devices module**
+**jsn_snmp_connect module**
