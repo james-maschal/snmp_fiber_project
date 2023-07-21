@@ -16,14 +16,14 @@ def file_check(date, config):
     If it's been over 30 days, another index report will be initiated.
     """
 
-    path_name = config["ini"][4]
+    path_name = config["index_path"]
     path_state = os.path.exists(path_name)
 
     if not path_state:
         return True
 
     now = datetime.datetime.now()
-    then = datetime.datetime.strptime(date["last_ran"][0], '%Y-%m-%d %H:%M:%S.%f')
+    then = datetime.datetime.strptime(date["last_ran"], '%Y-%m-%d %H:%M:%S.%f')
     delta = now - then
 
     if delta > datetime.timedelta(days=30):
@@ -74,7 +74,7 @@ def stage_1(switch, config, log_text):
     vartable, status_1 = snmp_connect.snmp_table(
                                             switch,
                                             config,
-                                            config["ini"][1]
+                                            config["oid_sys_inv"]
                                             )
 
     if status_1 and len(vartable) > 0:
@@ -100,7 +100,7 @@ def stage_2(switch, config, log_text):
     varbinds, status_3 = snmp_connect.snmp_binds(
                                             switch,
                                             config,
-                                            config["ini"][6]
+                                            config["oid_chassis"]
                                             )
 
     if status_3 and len(varbinds) > 0:
@@ -128,12 +128,12 @@ def index_json(index_report, config, log_text):
 
     json_obj = json.dumps(index_report, indent=4)
 
-    with open(config["ini"][4], 'w', encoding="UTF-8") as draft:
+    with open(config["index_path"], 'w', encoding="UTF-8") as draft:
         print(json_obj, file=draft)
 
     config_run = configparser.ConfigParser()
     config_run["run_date"] = {'date' : datetime.datetime.now()}
     config_run["log_text"] = {'log' : log_text}
 
-    with open(config["ini"][3], 'w', encoding="UTF-8") as configfile:
+    with open(config["last_ran_path"], 'w', encoding="UTF-8") as configfile:
         config_run.write(configfile)

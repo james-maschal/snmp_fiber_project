@@ -13,7 +13,7 @@ def snmp_init(config):
     and sent to be output to a JSON file.
     """
 
-    with open(config["ini"][4], 'r', encoding="UTF-8") as draft:
+    with open(config["index_path"], 'r', encoding="UTF-8") as draft:
 
         index_dict = json.load(draft)
         rx_report = []
@@ -29,7 +29,7 @@ def snmp_init(config):
             for index in switch_key:
 
                 if index.isnumeric():
-                    oid = config["ini"][2] + index
+                    oid = config["oid_sfp"] + index
 
                     rx_level_pretty = stage_1(
                                             config,

@@ -96,8 +96,10 @@ def var_binds(varbinds, chassis, switch):
         sophistication_check = [i for i in sophisticated if i in chassis]
 
         if sophistication_check:
-            val_old = f"{val_old}.0"
-            return float(val_old), True
+            if "HUB" not in switch:
+                if "MCR" not in switch:
+                    val_old = f"{val_old}.0"
+                    return float(val_old), True
 
         if len(val_old) < 3:
             val_old = f"-0.{val_old[1:]}"
@@ -118,7 +120,7 @@ def rx_json(rx_report, config):
     "rx_levels.json" exists, and deletes it if so.
     """
 
-    path_name = config["ini"][5]
+    path_name = config["rx_path"]
     path_state = os.path.exists(path_name)
 
     if path_state:
@@ -126,6 +128,6 @@ def rx_json(rx_report, config):
 
     json_obj = json.dumps(rx_report, indent=4)
 
-    with open(config["ini"][5], 'a', encoding="UTF-8") as draft:
+    with open(config["rx_path"], 'a', encoding="UTF-8") as draft:
 
         print(json_obj, file=draft)
