@@ -20,7 +20,7 @@ def main():
     """Main logic."""
 
     config = configparser.ConfigParser()
-    config.read("/home/netmaschal/python/snmp_fiber_project/info.ini")
+    config.read("/[YOUR DIRECTORY HERE]/snmp_fiber_project/info.ini")
     config_v = {
             "log_path"      : str(config["file_path"]["log_path"]),
             "rx_path"       : str(config["file_path"]["rx_path"]),
