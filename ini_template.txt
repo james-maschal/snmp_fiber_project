@@ -1,6 +1,7 @@
 #Template .ini file for this program
 
 [file_path]
+index_dir = /[YOUR DIRECTORY HERE]/snmp_fiber_project/index_names/
 last_ran_path = /[YOUR DIRECTORY HERE]/snmp_fiber_project/index_names/last_ran.ini
 index_path = /[YOUR DIRECTORY HERE]/snmp_fiber_project/index_names/index_report.json
 rx_path = /[YOUR DIRECTORY HERE]/snmp_fiber_project/index_names/rx_levels.json

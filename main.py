@@ -4,6 +4,7 @@ for storage and querying for bad interfaces. It references a list
 of interfaces for each switch deemed "critical", updated every 30
 days. All data gets exported to a database for later retrieval."""
 
+import os
 import configparser
 import datetime
 import mysql.connector
@@ -25,6 +26,7 @@ def main():
             "log_path"      : str(config["file_path"]["log_path"]),
             "rx_path"       : str(config["file_path"]["rx_path"]),
             "index_path"    : str(config["file_path"]["index_path"]),
+            "index_dir"     : str(config["file_path"]["index_dir"]),
             "last_ran_path" : str(config["file_path"]["last_ran_path"]),
             "server_passwd" : str(config["sql_user"]["pass"]),
             "server_user"   : str(config["sql_user"]["name"]),
@@ -130,6 +132,12 @@ def date_check(config, config_v):
     """Checks to see when the last index report
     was ran. If it was within 30 days, a report
     is not run."""
+
+    path_name = config["index_dir"]
+    path_state = os.path.exists(path_name)
+
+    if not path_state:
+        os.makedirs(config["index_dir"])
 
     config.read(config_v["last_ran_path"])
 
