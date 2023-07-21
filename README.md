@@ -4,7 +4,7 @@ for storage and querying for bad interfaces. It references a list
 of interfaces for each switch deemed "critical", updated every 30
 days. All data gets exported to a database for later retrieval.
 
-NOTE - You will need to add the MYSQL SERVER IP to Main.py, as well as update the .ini file directory.
+NOTE - You will need to update the .ini file directory with your own directory.
 
 ## Stage 1 - Index Report
 - The first thing this program does is check a file named "last_ran.ini" for the date of last index_report creation. If it has been more than 30 days, or if the file doesn't exist, It runs the index_report creation script.
